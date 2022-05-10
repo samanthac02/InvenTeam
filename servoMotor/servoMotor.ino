@@ -1,17 +1,34 @@
 #include <Servo.h>
 
 Servo stabMotor;
+int PulseSensorPurplePin = 0;
+int LED16 = 16;
+
+int Signal;
+int Threshold = 550;
 
 void setup() {
-  // put your setup code here, to run once:
+  pinMode(LED16, OUTPUT);
   stabMotor.attach(4);
+  
   Serial.begin(9600);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  stabMotor.writeMicroseconds(1000);
-  delay(1000);
-  stabMotor.writeMicroseconds(1500);
-  delay(1000);
+  Signal = analogRead(PulseSensorPurplePin);
+
+   Serial.println(Signal);
+
+
+   if(Signal > Threshold) {
+     digitalWrite(LED16,HIGH);
+     stabMotor.writeMicroseconds(1000);
+     delay(1000);
+   } else {
+     digitalWrite(LED16,LOW);
+     stabMotor.writeMicroseconds(2000);
+     delay(1000);
+   }
+
+  delay(10);
 }

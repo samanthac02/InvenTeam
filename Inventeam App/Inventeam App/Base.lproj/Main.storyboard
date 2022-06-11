@@ -29,12 +29,32 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKR-tx-Xmv">
+                                                <rect key="frame" x="20" y="83" width="388" height="388"/>
+                                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="MKR-tx-Xmv" secondAttribute="height" multiplier="1:1" id="9Yg-pH-jUG"/>
+                                                </constraints>
+                                            </webView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-pF-DMn">
+                                                <rect key="frame" x="20" y="491" width="388" height="20.333333333333314"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="Rgt-pF-DMn" firstAttribute="leading" secondItem="czc-yU-4vh" secondAttribute="leading" constant="20" id="DTV-z9-7Il"/>
                                             <constraint firstItem="jai-dT-2FM" firstAttribute="leading" secondItem="czc-yU-4vh" secondAttribute="leading" constant="20" id="Eqv-ol-r8b"/>
                                             <constraint firstItem="jai-dT-2FM" firstAttribute="top" secondItem="czc-yU-4vh" secondAttribute="top" constant="20" id="QQ2-6s-5dU"/>
+                                            <constraint firstItem="MKR-tx-Xmv" firstAttribute="leading" secondItem="czc-yU-4vh" secondAttribute="leading" constant="20" id="RAd-X4-wnr"/>
+                                            <constraint firstItem="MKR-tx-Xmv" firstAttribute="top" secondItem="jai-dT-2FM" secondAttribute="bottom" constant="20" id="Twa-jY-8jf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Rgt-pF-DMn" secondAttribute="trailing" constant="20" id="WJF-cW-r93"/>
+                                            <constraint firstItem="Rgt-pF-DMn" firstAttribute="centerX" secondItem="czc-yU-4vh" secondAttribute="centerX" id="Xco-sr-72W"/>
                                             <constraint firstAttribute="height" constant="1000" id="sst-CC-j13"/>
+                                            <constraint firstAttribute="trailing" secondItem="MKR-tx-Xmv" secondAttribute="trailing" constant="20" id="uXb-Oi-7JX"/>
+                                            <constraint firstItem="Rgt-pF-DMn" firstAttribute="top" secondItem="MKR-tx-Xmv" secondAttribute="bottom" constant="20" id="vRb-E8-i1s"/>
                                             <constraint firstAttribute="trailing" secondItem="jai-dT-2FM" secondAttribute="trailing" constant="20" id="ztq-9X-dVO"/>
                                         </constraints>
                                     </view>
@@ -58,6 +78,10 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Data" image="chart.bar" catalog="system" id="wZ7-yM-fDy"/>
+                    <connections>
+                        <outlet property="BPMLabel" destination="Rgt-pF-DMn" id="2d7-lU-GqI"/>
+                        <outlet property="webView" destination="MKR-tx-Xmv" id="K9n-wm-ZCh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W43-h4-5ai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class DataViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var BPMLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    
     var timer = Timer()
     
     override func viewDidLoad() {
@@ -20,7 +23,7 @@ class DataViewController: UIViewController {
             let url = URL(string: "http://192.168.4.1/read")
             let urlreq=URLRequest(url: url!)
             self.webView.loadRequest(urlreq)
-            
+
             if let url = URL(string: "http://192.168.4.1/read") {
                 do {
                     var contents = try String(contentsOf: url)
@@ -29,21 +32,34 @@ class DataViewController: UIViewController {
                     contents = contents.replacingOccurrences(of: "\n", with: "")
                     contents = contents.replacingOccurrences(of: " ", with: "")
                     contents = contents.replacingOccurrences(of: "\r", with: "")
-                    self.BPMLabel.text = contents
-                    
-                    print(contents)
-                    
-                    if Int(contents) ?? 0 > 100 {
-                        print("JELLO")
-                        self.BPMLabel.text = "UR KID IS DYING"
+                    self.BPMLabel.text = contents + "BPM"
+
+                print(contents)
+
+                    if Int(contents) ?? 0 > 90 {
+                        self.statusLabel.text = "Drowning"
+                        self.statusLabel.textColor = UIColor(red: 240/255, green: 113/255, blue: 104/255, alpha: 1.0)
+                        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
+                    } else {
+                        self.statusLabel.text = "Swimming"
                     }
-                } catch {
-                    // contents could not be loaded
-                }
-            } else {
-                // the URL was bad!
+                } catch {}
             }
         })
     }
-
+    
+    @IBAction func stopTimer(_ sender: Any) {
+        timer.invalidate()
+    }
+    
+    @IBAction func hiddenButton(_ sender: Any) {
+        if statusLabel.text! == "Swimming" {
+            self.statusLabel.text = "Drowning"
+            self.statusLabel.textColor = UIColor(red: 240/255, green: 113/255, blue: 104/255, alpha: 1.0)
+            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) { }
+        } else {
+            self.statusLabel.text = "Swimming"
+            self.statusLabel.textColor = UIColor.black
+        }
+    }
 }
